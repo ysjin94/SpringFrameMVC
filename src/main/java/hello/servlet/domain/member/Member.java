@@ -6,7 +6,7 @@ import lombok.Setter;
 @Getter @Setter
 public class Member {
     private long id;
-    private String userName;
+    private String username;
     private int age;
 
     public Member(){
@@ -14,7 +14,7 @@ public class Member {
     }
 
     public Member(String userName, int age) {
-        this.userName = userName;
+        this.username = userName;
         this.age = age;
     }
 }
