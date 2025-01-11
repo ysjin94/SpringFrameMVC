@@ -60,7 +60,7 @@ public class FrontControllerV5 extends HttpServlet {
             resp.sendError(HttpServletResponse.SC_NOT_FOUND);
             return;
         }
-        MyHandlerAdapter adapter = getHandelerAdapter(handler);
+        MyHandlerAdapter adapter = getHandlerAdapter(handler);
 
         ModelView mv = adapter.handle(handler, req, resp);
 
@@ -70,7 +70,7 @@ public class FrontControllerV5 extends HttpServlet {
         view.render(mv.getModel(), req, resp);
    }
 
-    private MyHandlerAdapter getHandelerAdapter(Object handler) {
+    private MyHandlerAdapter getHandlerAdapter(Object handler) {
         for (MyHandlerAdapter adapter : handlerAdapters) {
             if (adapter.supports(handler)) {
                 return adapter;
@@ -82,18 +82,12 @@ public class FrontControllerV5 extends HttpServlet {
     private Object getHandler(HttpServletRequest req) {
         String requestURI = req.getRequestURI();
         Object handler = handelerMappingMap.get(requestURI);
+        System.out.println("handler : " + handler);
         return handler;
     }
 
     private static MyView viewResolver(String viewName) {
         return new MyView("/WEB-INF/views/" + viewName + ".jsp");
-    }
-
-    private static Map<String, String> cateteParamMap(HttpServletRequest req) {
-        Map<String, String> paramMap = new HashMap<>();
-        req.getParameterNames().asIterator()
-                .forEachRemaining(paramName -> paramMap.put(paramName, req.getParameter(paramName)));
-        return paramMap;
     }
 
 }

@@ -31,7 +31,6 @@ public class ControllerV4HandlerAdapter implements MyHandlerAdapter{
         mv.setModel(model);
         return mv;
     }
-
     private static Map<String, String> cateteParamMap(HttpServletRequest req) {
         Map<String, String> paramMap = new HashMap<>();
         req.getParameterNames().asIterator()
